@@ -8,11 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function  __construct()
+    {
+        $this->middleware('guest:admin');
+    }
+
     public function getLogin() {
         return view('loginTemplate');
     }
 
-    public function login (Request $request){
+    public function login(Request $request){
         $this->validate($request,[
            'email'=>'required|email',
            'password'=>'required'
@@ -24,10 +29,9 @@ class AuthController extends Controller
         ];
 
         if (Auth::guard('admin')->attempt($credential)){
-            return redirect()->intended(route('index'));
-        }else{
-            return redirect()->back()->withInput($request->only('email'))->with('error', 'Masukkan email dan password yang benar');
+            return redirect()->route('index');
         }
+            return redirect()->back()->with('error', 'Masukkan email dan password yang benar');
     }
 
     public function logout()
