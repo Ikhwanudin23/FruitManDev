@@ -25,9 +25,9 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($credential)){
             return redirect()->intended(route('index'));
+        }else{
+            return redirect()->back()->withInput($request->only('email'))->with('error', 'Masukkan email dan password yang benar');
         }
-
-        return redirect()->back()->withInput($request->only('email'))->with('error', 'Masukkan email dan password yang benar');
     }
 
     public function logout()
