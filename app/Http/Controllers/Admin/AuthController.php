@@ -27,7 +27,7 @@ class AuthController extends Controller
             return redirect()->intended(route('index'));
         }
 
-        return redirect()->back()->withInput($request->only('email'));
+        return redirect()->back()->withInput($request->only('email'))->with('error', 'Masukkan email dan password yang benar');
     }
 
     public function logout()
