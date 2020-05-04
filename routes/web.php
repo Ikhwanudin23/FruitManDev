@@ -26,6 +26,11 @@ Route::get('/dashboard', function (){
     return view('pages/dashboard');
 });
 
+Route::get('/UserList', function (){
+    return view('pages/userlist');
+});
+
+
 Route::group(['prefix' => 'admin'], function (){
     Route::get('dashboard', 'Admin\DashboardController@index')->name('index');
     Route::get('login', 'Admin\AuthController@getLogin')->name('admin.getLogin');

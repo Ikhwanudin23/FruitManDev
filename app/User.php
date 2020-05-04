@@ -15,6 +15,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    //thiss
+    protected $guard = 'user';
+    protected $table = 'users';
+    protected $guarded = [];
+    //end thiss
+
     protected $fillable = [
         'name', 'email', 'password',
     ];

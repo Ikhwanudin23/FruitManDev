@@ -37,7 +37,7 @@ class LoginController extends Controller
         return response()->json([
             'message' => 'login gagal',
             'status' => false,
-            'data' =>  []
+            'data' => (object) []
         ]);
     }
 }

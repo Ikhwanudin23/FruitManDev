@@ -36,5 +36,20 @@ class RegisterController extends Controller
            'status'=>true,
            'data'=>$user
         ]);
+
+/*        $validator = Validator::make($request->all(),
+            [
+                'name' => ['required', 'string', 'max:191'],
+                'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+                'password' => ['required', 'string', 'min:8' ],
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors(),
+                'data' => (object) []
+            ], 401);
+        }*/
     }
 }

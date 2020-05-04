@@ -18,7 +18,7 @@ class CreateUserTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->text('password');
-            $table->string('image')->default('assets/user/default.png')->nullable();
+            $table->string('image')->default('assets/upload/user/default.png')->nullable();
             $table->text('address')->nullable();
             $table->boolean('status')->default(true);
             $table->string('api_token')->unique();

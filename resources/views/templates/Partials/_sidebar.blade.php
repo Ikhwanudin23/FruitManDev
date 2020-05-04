@@ -25,7 +25,7 @@
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Daftar users </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-card-details"></i>&nbsp;&nbsp;&nbsp;Dafar Pengguna</a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="{{--{{route('user.index')}}--}}" aria-expanded="false"><i class="mdi mdi-account-card-details"></i>&nbsp;&nbsp;&nbsp;Dafar Pengguna</a></li>
                     </ul>
                 </li>
                 {{--<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Penjual</span></a>
