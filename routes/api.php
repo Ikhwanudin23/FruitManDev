@@ -19,6 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('product','Api\Product\ProductController@index');
 Route::post('product','Api\Product\ProductController@store');
+Route::post('product/{id}/update','Api\Product\ProductController@update');
+Route::get('product/{id}/delete','Api\Product\ProductController@delete');
+
+Route::get('order','Api\Order\OrderController@index');
+Route::get('order/{id}/confirmed','Api\Order\OrderController@confirmed');
+Route::get('order/{id}/decline','Api\Order\OrderController@decline');
+Route::post('order/store','Api\Order\OrderController@store');
+Route::get('order/collector','Api\Order\OrderController@collector');
+Route::get('order/seller','Api\Order\OrderController@seller');
 
 
 Route::post('user/register', 'Api\User\Auth\RegisterController@register');

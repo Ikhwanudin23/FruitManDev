@@ -15,15 +15,17 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->string('name');
-            $table->text('description');
-            $table->integer('price')->nullable();
-            $table->string('image')->default('assets/product/default.png');
+            $table->integer('collector_id')->unsigned();
+            $table->integer('seller_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->integer('offer_price');
             $table->boolean('status')->default(true);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('collector_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
+
+
         });
     }
 

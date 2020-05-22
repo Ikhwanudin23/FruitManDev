@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        try{
+        try {
             $fruits = Product::all();
 
             return response()->json([
@@ -27,7 +27,7 @@ class ProductController extends Controller
                 'status' => true,
                 'data' => ProductResource::collection($fruits),
             ]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'status' => false,
@@ -36,15 +36,16 @@ class ProductController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
 
-            $validator = Validator::make($request->all(),[
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'price' => 'required|numeric',
             ]);
 
-            if ($validator->fails()){
+            if ($validator->fails()) {
                 return response()->json([
                     'message' => $validator->errors(),
                     'status' => false,
@@ -68,15 +69,66 @@ class ProductController extends Controller
                 'status' => true,
                 'data' => new ProductResource($product)
             ]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),
                 'status' => false,
                 'data' => (object)[],
             ]);
         }
-
-
-
     }
+
+    public function update($id, Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'price' => 'required|numeric',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => $validator->errors(),
+                    'status' => false,
+                    'data' => (object)[]
+                ]);
+            }
+
+            $data = Product::findOrFail($id);
+            $data->user_id = Auth::user()->id;
+            $data->name = $request->name;
+            $data->address = $request->address;
+            $data->description = $request->description;
+            $data->price = $request->price;
+
+            if ($request->file('image') == '') {
+                $data->image = $data->image;
+            } else {
+                $data->image = $request->file('image')->store('upload/product');
+            }
+
+            return response()->json([
+                'message' => 'success update product',
+                'status' => true,
+                'data' => new ProductResource($data)
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => false,
+                'data' => (object)[],
+            ]);
+        }
+    }
+
+    public function delete ($id){
+        $data = Product::find($id);
+        $data->delete();
+        return response()->json([
+            'message' => "berhasil menghapus product",
+            'status' => true,
+            'data' => (object)[],
+        ]);
+    }
+
 }
