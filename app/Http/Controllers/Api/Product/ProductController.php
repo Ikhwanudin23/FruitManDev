@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $fruits = Product::all();
+            $fruits = Product::where('user_id', '!=', Auth::user()->id)->get();
 
             return response()->json([
                 'message' => 'success',
