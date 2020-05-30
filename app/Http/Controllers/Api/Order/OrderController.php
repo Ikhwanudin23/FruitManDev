@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Order;
 
 use App\Http\Resources\OrderResource;
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,19 @@ class OrderController extends Controller
         ]);
     }
 
+    public function complete($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->complete = true;
+        $order->update();
+
+        return response()->json([
+            'message' => 'completed order',
+            'status' => true,
+            'data' => new OrderResource($order),
+        ]);
+    }
+
     public function collector()
     {
         $orders = Order::where('collector_id', Auth::user()->id)->get();
@@ -37,7 +51,7 @@ class OrderController extends Controller
 
     public function seller()
     {
-        $orders = Order::where('seller_id', Auth::user()->id)->get();
+        $orders = Order::where('seller_id', Auth::user()->id)->where('status', '1')->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -45,19 +59,48 @@ class OrderController extends Controller
         ]);
     }
 
-    public function store (Request $request){
+    public function confirmed($id)
+    {
+        $user = Auth::user()->id;
+        $order = Order::where('id', $id)
+            ->where('seller_id', $user)
+            ->where('status', '1')
+            ->update(['status' => '2']);
+
+        return response()->json([
+            'message' => 'successfully confirmed order',
+            'status' => true,
+            'data' => $order
+        ]);
+    }
+
+    public function decline($id, $role)
+    {
+        $user = Auth::user()->id;
+        $order = Order::where('id', $id)
+            ->where($role, $user)
+            ->where('status', '1')
+            ->update(['status' => '0']);
+
+        return response()->json([
+            'message' => 'successfully decline order',
+            'status' => true,
+            'data' => $order
+        ]);
+    }
+
+    public function store (Request $request)
+    {
         try {
 
-            $validator = Validator::make($request->all(), [
-                'offer_price' => 'required|numeric',
-            ]);
+            $validator = Validator::make($request->all(), ['offer_price' => 'required|numeric']);
 
             if ($validator->fails()) {
-                return response()->json([
-                    'message' => $validator->errors(),
-                    'status' => false,
-                    'data' => (object)[]
-                ]);
+                return response()->json(['message' => $validator->errors(), 'status' => false, 'data' => (object)[]]);
+            }
+
+            if ($request->seller_id == Auth::user()->id){
+                return response()->json(['message' => 'tidak dapat mengorder produk sendiri', 'status' => false]);
             }
 
             $order = Order::create([
@@ -65,7 +108,6 @@ class OrderController extends Controller
                 'seller_id' => $request->seller_id,
                 'product_id' => $request->product_id,
                 'offer_price' => $request->offer_price,
-                'status' => true
             ]);
 
             return response()->json([
@@ -73,6 +115,7 @@ class OrderController extends Controller
                 'status' => true,
                 'data' => new OrderResource($order)
             ]);
+
         } catch (\Exception $exception) {
             return response()->json([
                 'message' => $exception->getMessage(),

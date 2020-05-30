@@ -19,7 +19,9 @@ class CreateOrdersTable extends Migration
             $table->integer('seller_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('offer_price');
-            $table->boolean('status')->default(true);
+            $table->boolean('completed')->default(false);
+            $table->enum('status', ['0', '1', '2'])->default('1');
+
             $table->timestamps();
 
             $table->foreign('collector_id')->references('id')->on('users')->onDelete('cascade');
