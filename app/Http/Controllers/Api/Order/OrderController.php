@@ -41,7 +41,7 @@ class OrderController extends Controller
 
     public function collector()
     {
-        $orders = Order::where('collector_id', Auth::user()->id)->get();
+        $orders = Order::where('collector_id', Auth::user()->id)->where('status', '1')->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
