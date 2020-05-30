@@ -74,11 +74,11 @@ class OrderController extends Controller
         ]);
     }
 
-    public function decline($id, $role)
+    public function decline($id, Request $request)
     {
         $user = Auth::user()->id;
         $order = Order::where('id', $id)
-            ->where($role, $user)
+            ->where($request->role, $user)
             ->where('status', '1')
             ->update(['status' => '0']);
 
