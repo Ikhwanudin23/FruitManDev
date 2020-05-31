@@ -36,6 +36,27 @@ class ProductController extends Controller
         }
     }
 
+    public function show()
+    {
+        try {
+            $fruits = Product::where('user_id', Auth::user()->id)->get();
+
+            return response()->json([
+                'message' => 'success',
+                'status' => true,
+                'data' => ProductResource::collection($fruits),
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => false,
+                'data' => (object)[],
+            ]);
+        }
+    }
+
+
+
     public function store(Request $request)
     {
         try {

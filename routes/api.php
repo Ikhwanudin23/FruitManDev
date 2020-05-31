@@ -21,13 +21,17 @@ Route::get('product','Api\Product\ProductController@index');
 Route::post('product','Api\Product\ProductController@store');
 Route::post('product/{id}/update','Api\Product\ProductController@update');
 Route::get('product/{id}/delete','Api\Product\ProductController@delete');
+Route::get('product/show','Api\Product\ProductController@show');
 
 Route::get('order','Api\Order\OrderController@index');
 Route::get('order/{id}/confirmed','Api\Order\OrderController@confirmed');
 Route::post('order/{id}/decline','Api\Order\OrderController@decline');
 Route::post('order/store','Api\Order\OrderController@store');
-Route::get('order/collector','Api\Order\OrderController@collector');
-Route::get('order/seller','Api\Order\OrderController@seller');
+Route::get('order/collector/waiting','Api\Order\OrderController@collectorWaiting');
+Route::get('order/collector/inprogress','Api\Order\OrderController@collectorInProgress');
+Route::get('order/collector/completed','Api\Order\OrderController@collectorCompleted');
+
+Route::get('order/seller/orderin','Api\Order\OrderController@sellerOrderIn');
 
 
 Route::post('user/register', 'Api\User\Auth\RegisterController@register');
