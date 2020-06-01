@@ -39,7 +39,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function collector()
+    public function collectorWaiting()
     {
         $orders = Order::where('collector_id', Auth::user()->id)->where('status', '1')->get();
         return response()->json([
@@ -49,7 +49,17 @@ class OrderController extends Controller
         ]);
     }
 
-    public function seller()
+    public function collectorInProgress()
+    {
+        $orders = Order::where('collector_id', Auth::user()->id)->where('status', '2')->get();
+        return response()->json([
+            'message' => 'success',
+            'status' => true,
+            'data' => OrderResource::collection($orders),
+        ]);
+    }
+
+    public function sellerOrderIn()
     {
         $orders = Order::where('seller_id', Auth::user()->id)->where('status', '1')->get();
         return response()->json([
