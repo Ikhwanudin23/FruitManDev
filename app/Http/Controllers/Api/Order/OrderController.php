@@ -95,7 +95,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'successfully decline order',
             'status' => true,
-            'data' => $order
+            'data' => (object)[]
         ]);
     }
 
