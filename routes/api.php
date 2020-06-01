@@ -36,6 +36,8 @@ Route::get('order/seller/orderin','Api\Order\OrderController@sellerOrderIn');
 
 Route::post('user/register', 'Api\User\Auth\RegisterController@register');
 Route::post('user/login', 'Api\User\Auth\LoginController@login');
+Route::get('user/profile', 'Api\User\Profile\UserController@profile');
+Route::post('user/profile/update', 'Api\User\Profile\UserController@updateprofile');
 
 
 

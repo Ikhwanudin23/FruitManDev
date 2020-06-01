@@ -20,6 +20,7 @@ class CreateUserTable extends Migration
             $table->text('password');
             $table->string('image')->default('assets/upload/user/default.png')->nullable();
             $table->text('address')->nullable();
+            $table->string('phone')->nullable();
             $table->boolean('status')->default(true);
             $table->string('api_token')->unique();
             $table->timestamp('email_verified_at')->nullable();
