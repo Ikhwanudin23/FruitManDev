@@ -30,6 +30,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '1')
+        ->where('arrive', false)
         ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
@@ -42,6 +43,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
+        ->where('arrive', false)
         ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
@@ -54,6 +56,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
+        ->where('arrive', true)
         ->where('complete', true)->get();
         return response()->json([
             'message' => 'success',
@@ -66,6 +69,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '1')
+        ->where('arrive', false)
         ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
@@ -78,6 +82,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '2')
+        ->where('arrive', false)
         ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
@@ -90,6 +95,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '2')
+        ->where('arrive', true)
         ->where('complete', true)->get();
         return response()->json([
             'message' => 'success',
@@ -136,6 +142,19 @@ class OrderController extends Controller
 
         return response()->json([
             'message' => 'completed order',
+            'status' => true,
+            'data' => (object)[],
+        ]);
+    }
+
+    public function arrive($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->arrive = true;
+        $order->update();
+
+        return response()->json([
+            'message' => 'i arrive to your home',
             'status' => true,
             'data' => (object)[],
         ]);
