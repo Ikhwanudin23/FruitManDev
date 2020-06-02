@@ -22,7 +22,6 @@ class OrderResource extends JsonResource
             "offer_price" => $this->offer_price,
             "status" => $this->status,
             "complete" => $this->complete
-
         ];
     }
 }

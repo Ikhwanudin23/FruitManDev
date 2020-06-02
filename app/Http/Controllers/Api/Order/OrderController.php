@@ -26,22 +26,11 @@ class OrderController extends Controller
         ]);
     }
 
-    public function complete($id)
-    {
-        $order = Order::findOrFail($id);
-        $order->complete = true;
-        $order->update();
-
-        return response()->json([
-            'message' => 'completed order',
-            'status' => true,
-            'data' => new OrderResource($order),
-        ]);
-    }
-
     public function collectorWaiting()
     {
-        $orders = Order::where('collector_id', Auth::user()->id)->where('status', '1')->get();
+        $orders = Order::where('collector_id', Auth::user()->id)
+        ->where('status', '1')
+        ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -51,7 +40,9 @@ class OrderController extends Controller
 
     public function collectorInProgress()
     {
-        $orders = Order::where('collector_id', Auth::user()->id)->where('status', '2')->get();
+        $orders = Order::where('collector_id', Auth::user()->id)
+        ->where('status', '2')
+        ->where('complete', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -59,9 +50,47 @@ class OrderController extends Controller
         ]);
     }
 
+    public function collectorCompleted()
+    {
+        $orders = Order::where('collector_id', Auth::user()->id)
+        ->where('status', '2')
+        ->where('complete', true)->get();
+        return response()->json([
+            'message' => 'success',
+            'status' => true,
+            'data' => OrderResource::collection($orders),
+        ]);   
+    }
+
     public function sellerOrderIn()
     {
-        $orders = Order::where('seller_id', Auth::user()->id)->where('status', '1')->get();
+        $orders = Order::where('seller_id', Auth::user()->id)
+        ->where('status', '1')
+        ->where('complete', false)->get();
+        return response()->json([
+            'message' => 'success',
+            'status' => true,
+            'data' => OrderResource::collection($orders),
+        ]);
+    }
+
+    public function sellerInProgress()
+    {
+        $orders = Order::where('seller_id', Auth::user()->id)
+        ->where('status', '2')
+        ->where('complete', false)->get();
+        return response()->json([
+            'message' => 'success',
+            'status' => true,
+            'data' => OrderResource::collection($orders),
+        ]);
+    }
+
+    public function sellerCompleted()
+    {
+        $orders = Order::where('seller_id', Auth::user()->id)
+        ->where('status', '2')
+        ->where('complete', true)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -80,7 +109,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'successfully confirmed order',
             'status' => true,
-            'data' => $order
+            'data' => (object)[]
         ]);
     }
 
@@ -96,6 +125,19 @@ class OrderController extends Controller
             'message' => 'successfully decline order',
             'status' => true,
             'data' => (object)[]
+        ]);
+    }
+
+    public function complete($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->complete = true;
+        $order->update();
+
+        return response()->json([
+            'message' => 'completed order',
+            'status' => true,
+            'data' => (object)[],
         ]);
     }
 
