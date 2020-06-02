@@ -21,8 +21,8 @@ class CreateOrdersTable extends Migration
             $table->integer('offer_price');
             $table->boolean('completed')->default(false);
             $table->enum('status', ['0', '1', '2'])->default('1');
-            $table->boolean('arrive')->default('false');
-            $table->boolean('complete')->default('false');
+            $table->boolean('arrive')->default(false);
+            $table->boolean('complete')->default(false);
 
             $table->timestamps();
 

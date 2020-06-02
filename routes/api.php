@@ -27,7 +27,7 @@ Route::get('order','Api\Order\OrderController@index');
 Route::post('order/store','Api\Order\OrderController@store');
 Route::post('order/{id}/decline','Api\Order\OrderController@decline');
 Route::get('order/{id}/confirmed','Api\Order\OrderController@confirmed');
-Route::get('order/{id}/completed', 'Api\Order\OrderController@completed')
+Route::get('order/{id}/completed', 'Api\Order\OrderController@completed');
 
 Route::get('order/collector/waiting','Api\Order\OrderController@collectorWaiting');
 Route::get('order/collector/inprogress','Api\Order\OrderController@collectorInProgress');
@@ -41,7 +41,3 @@ Route::post('user/register', 'Api\User\Auth\RegisterController@register');
 Route::post('user/login', 'Api\User\Auth\LoginController@login');
 Route::get('user/profile', 'Api\User\Profile\UserController@profile');
 Route::post('user/profile/update', 'Api\User\profilee\UserController@updateprofile');
-
-
-
-
