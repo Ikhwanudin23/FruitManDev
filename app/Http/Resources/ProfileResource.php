@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class ProfileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             "address" => $this->address,
             "phone" => $this->phone,
             "status" => $this->status,
-            "api_token" => $this->api_token,
+            "products" => ProductResource::collection($this->products)
         ];
     }
 }

@@ -67,11 +67,7 @@ class ProductController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json([
-                    'message' => $validator->errors(),
-                    'status' => false,
-                    'data' => (object)[]
-                ]);
+                return response()->json(['message' => $validator->errors(), 'status' => false, 'data' => (object)[]]);
             }
 
             $image = $request->file('image')->store('upload/product');

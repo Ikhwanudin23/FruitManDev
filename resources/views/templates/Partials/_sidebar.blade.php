@@ -20,12 +20,12 @@
                 <li class="nav-small-cap">FRUITMAN MANAJEMENT</li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-checkbox-multiple-blank"></i><span class="hide-menu">Dashboard </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>&nbsp;&nbsp;&nbsp;Dashboard</a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="{{route('index')}}" aria-expanded="false"><i class="mdi mdi-clipboard-check"></i>&nbsp;&nbsp;&nbsp;Dashboard</a></li>
                     </ul>
                 </li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Daftar users </span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow waves-effect waves-dark" href="{{--{{route('user.index')}}--}}" aria-expanded="false"><i class="mdi mdi-account-card-details"></i>&nbsp;&nbsp;&nbsp;Dafar Pengguna</a></li>
+                        <li><a class="has-arrow waves-effect waves-dark" href="{{route('userlist.index')}}" aria-expanded="false"><i class="mdi mdi-account-card-details"></i>&nbsp;&nbsp;&nbsp;Dafar Pengguna</a></li>
                     </ul>
                 </li>
                 {{--<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Penjual</span></a>

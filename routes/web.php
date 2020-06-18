@@ -35,6 +35,8 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('dashboard', 'Admin\DashboardController@index')->name('index');
     Route::get('login', 'Admin\AuthController@getLogin')->name('admin.getLogin');
     Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
+    Route::get('userlist', 'BackOffice\UserController@index')->name('userlist.index');
+
 
     Route::post('login', 'Admin\AuthController@login')->name('admin.login');
 

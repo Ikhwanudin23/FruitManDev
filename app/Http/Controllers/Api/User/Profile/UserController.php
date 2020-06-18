@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api\User\Profile;
 
+use App\Http\Resources\ProfileResource;
+use App\Http\Resources\UserResource;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +24,7 @@ class UserController extends Controller
     	return response()->json([
     		'message' => 'successfully get profile',
     		'status' => true,
-    		'data' => $user
+    		'data' => new ProfileResource($user)
     	]);
     }
 
@@ -38,7 +41,6 @@ class UserController extends Controller
                $user->image = $request->file('image')->store('upload/image');
            }
     	$user->update();
-
     	return response()->json([
     		'message' => 'successfully update profile',
     		'status' => true,
