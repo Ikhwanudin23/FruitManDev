@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d854c40-086e-4b55-b2f8-596f9d46c38b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/LoginController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/RegisterController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/VerificationController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/VerificationController.php" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" afterPath="$PROJECT_DIR$/routes/api.php" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
-    </list>
+    <list default="true" id="0d854c40-086e-4b55-b2f8-596f9d46c38b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -444,12 +436,12 @@
       <workItem from="1591495127182" duration="285000" />
       <workItem from="1592464500267" duration="2156000" />
       <workItem from="1593149682211" duration="2431000" />
-      <workItem from="1593152259678" duration="271000" />
+      <workItem from="1593152259678" duration="382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101923000" />
+    <option name="totallyTimeSpent" value="102034000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
