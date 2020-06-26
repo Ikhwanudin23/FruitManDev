@@ -38,7 +38,6 @@ class RegisterController extends Controller
         return response()->json([
            'message' => $message,
            'status' => true,
-           'data' => $user
         ]);
 
 /*        $validator = Validator::make($request->all(),
