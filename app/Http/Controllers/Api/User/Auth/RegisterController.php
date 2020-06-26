@@ -31,10 +31,14 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->api_token = Str::random(80);
         $user->save();
+        $user->sendApiEmailVerificationNotification();
+        $message = "Cek Email Anda, Verifikasi Dahulu";
+
+
         return response()->json([
-           'message'=>'berhasil registrasi',
-           'status'=>true,
-           'data'=>$user
+           'message' => $message,
+           'status' => true,
+           'data' => $user
         ]);
 
 /*        $validator = Validator::make($request->all(),

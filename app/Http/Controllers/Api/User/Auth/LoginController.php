@@ -15,9 +15,10 @@ class LoginController extends Controller
     }
 
     public function login (Request $request){
+
         $this->validate($request,[
-            'email'=>'required|email',
-            'password'=>'required'
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
         $credential = [
@@ -27,11 +28,18 @@ class LoginController extends Controller
 
         if (Auth::guard('user')->attempt($credential)){
             $user = Auth::guard('user')->user();
-            return response()->json([
-                'message' => 'login berhasil',
-                'status' => true,
-                'data' => $user
-            ]);
+            if ($user->email_verified_at != null){
+                return response()->json([
+                    'message' => 'login berhasil',
+                    'status' => true,
+                    'data' => $user
+                ]);
+            }else{
+                return response()->json([
+                    'message' => 'Silahkan Aktifasi Email Dahulu',
+                    'status' => false,
+                ], 401);
+            }
         }
 
         return response()->json([

@@ -41,3 +41,5 @@ Route::post('user/register', 'Api\User\Auth\RegisterController@register');
 Route::post('user/login', 'Api\User\Auth\LoginController@login');
 Route::get('user/profile', 'Api\User\Profile\UserController@profile');
 Route::post('user/profile/update', 'Api\User\profilee\UserController@updateprofile');
+Route::get('email/verify/{id}', 'Api\User\Auth\VerificationController@verify')->name('api.verification.verify');
+Route::get('email/resend', 'Api\User\Auth\VerificationController@resend')->name('api.verification.resend');
