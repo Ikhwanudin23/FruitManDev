@@ -57,6 +57,26 @@ class ProductController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        $products = Product::where('status', true)->get();
+        $strReq = strtolower($request->name);
+        $results = [];
+        foreach ($products as $product){
+            $strDb = strtolower($product->name);
+            if ($strReq == $strDb){
+                array_push($results, $product);
+            }
+        }
+
+        return response()->json([
+            'message' => 'Successfully search product by name',
+            'status' => true,
+            'data' => $results
+        ]);
+    }
+
+
 
     public function store(Request $request)
     {

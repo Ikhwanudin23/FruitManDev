@@ -22,6 +22,7 @@ Route::post('product/store','Api\Product\ProductController@store');
 Route::post('product/{id}/update','Api\Product\ProductController@update');
 Route::get('product/{id}/delete','Api\Product\ProductController@delete');
 Route::get('product/show','Api\Product\ProductController@show');
+Route::post('product/search','Api\Product\ProductController@search');
 
 Route::get('order','Api\Order\OrderController@index');
 Route::post('order/store','Api\Order\OrderController@store');
