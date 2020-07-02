@@ -7,6 +7,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -70,14 +71,18 @@ class ProductController extends Controller
                 return response()->json(['message' => $validator->errors(), 'status' => false, 'data' => (object)[]]);
             }
 
-            $image = $request->file('image')->store('upload/product');
+            $photo = $request->file('image');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $filepath = 'product/' . $filename;
+            Storage::disk('s3')->put($filepath, file_get_contents($photo));
+
             $product = Product::create([
                 'user_id' => Auth::user()->id,
                 'name' => $request->name,
                 'address' => $request->address,
                 'description' => $request->description,
                 'price' => $request->price,
-                'image' => $image,
+                'image' =>  Storage::disk('s3')->url($filepath, $filename),
                 'status' => true
             ]);
 
