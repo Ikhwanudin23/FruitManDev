@@ -31,7 +31,7 @@ class OrderController extends Controller
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '1')
         ->where('arrive', false)
-        ->where('complete', false)->get();
+        ->where('completed', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -44,7 +44,7 @@ class OrderController extends Controller
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
         ->where('arrive', false)
-        ->where('complete', false)->get();
+        ->where('completed', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -57,7 +57,7 @@ class OrderController extends Controller
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
         ->where('arrive', true)
-        ->where('complete', true)->get();
+        ->where('completed', true)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -70,7 +70,7 @@ class OrderController extends Controller
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '1')
         ->where('arrive', false)
-        ->where('complete', false)->get();
+        ->where('completed', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -83,7 +83,7 @@ class OrderController extends Controller
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '2')
         ->where('arrive', false)
-        ->where('complete', false)->get();
+        ->where('completed', false)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -96,7 +96,7 @@ class OrderController extends Controller
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '2')
         ->where('arrive', true)
-        ->where('complete', true)->get();
+        ->where('completed', true)->get();
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -137,7 +137,7 @@ class OrderController extends Controller
     public function complete($id)
     {
         $order = Order::findOrFail($id);
-        $order->complete = true;
+        $order->completed = true;
         $order->update();
 
         return response()->json([
