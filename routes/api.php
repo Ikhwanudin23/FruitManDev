@@ -26,7 +26,7 @@ Route::get('product/{name}/search','Api\Product\ProductController@search');
 
 Route::get('order','Api\Order\OrderController@index');
 Route::post('order/store','Api\Order\OrderController@store');
-Route::post('order/{id}/decline','Api\Order\OrderController@decline');
+Route::get('order/{id}/decline','Api\Order\OrderController@decline');
 Route::get('order/{id}/confirmed','Api\Order\OrderController@confirmed');
 Route::get('order/{id}/completed', 'Api\Order\OrderController@completed');
 Route::get('order/{id}/arrived', 'Api\Order\OrderController@arrived');

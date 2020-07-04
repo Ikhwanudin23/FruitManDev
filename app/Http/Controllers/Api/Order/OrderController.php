@@ -105,11 +105,7 @@ class OrderController extends Controller
 
     public function confirmed($id)
     {
-        $user = Auth::user()->id;
-        $order = Order::where('id', $id)
-            ->where('seller_id', $user)
-            ->where('status', '1')
-            ->first();
+        $order = Order::findOrFail($id);
 
         if ($order->status == '0'){
             return response()->json([
@@ -127,13 +123,9 @@ class OrderController extends Controller
         }
     }
 
-    public function decline($id, Request $request)
+    public function decline($id)
     {
-        $user = Auth::user()->id;
-        $order = Order::where('id', $id)
-            ->where($request->role, $user)
-            ->where('status', '1')
-            ->first();
+        $order = Order::findOrFail($id);
 
         if ($order->status == '2'){
             return response()->json([
