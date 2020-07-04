@@ -137,7 +137,7 @@ class OrderController extends Controller
     public function complete($id)
     {
         $order = Order::findOrFail($id);
-        $order->completed = true;
+        $order->complete = true;
         $order->update();
 
         return response()->json([
@@ -147,7 +147,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function arrive($id)
+    public function arrived($id)
     {
         $order = Order::findOrFail($id);
         $order->arrive = true;
