@@ -116,22 +116,19 @@ class OrderController extends Controller
                 'message' => 'orderan sudah di batalkan sama pembeli',
                 'status' => false
             ]);
+        }else{
+            $order->update(['status' => '2']);
+
+            return response()->json([
+                'message' => 'successfully confirmed order',
+                'status' => true,
+                'data' => (object)[]
+            ]);
         }
-
-
-        $order->update(['status' => '2']);
-
-        return response()->json([
-            'message' => 'successfully confirmed order',
-            'status' => true,
-            'data' => (object)[]
-        ]);
     }
 
     public function decline($id, Request $request)
     {
-
-
         $user = Auth::user()->id;
         $order = Order::where('id', $id)
             ->where($request->role, $user)
@@ -143,14 +140,17 @@ class OrderController extends Controller
                 'message' => 'orderan sudah di konfirmasi sama penjual',
                 'status' => false
             ]);
-        }
-        $order->update(['status' => '0']);
+        }else{
+            $order->update(['status' => '0']);
 
-        return response()->json([
-            'message' => 'successfully decline order',
-            'status' => true,
-            'data' => (object)[]
-        ]);
+            return response()->json([
+                'message' => 'successfully decline order',
+                'status' => true,
+                'data' => (object)[]
+            ]);
+        }
+
+
     }
 
     public function completed($id)
