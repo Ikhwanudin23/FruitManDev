@@ -132,7 +132,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function complete($id)
+    public function completed($id)
     {
         $order = Order::findOrFail($id);
         $order->complete = true;
