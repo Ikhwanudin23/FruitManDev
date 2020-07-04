@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         try {
             $fruits = Product::with(['orders' => function($query){
-                $query->whereIn('status', ['0', '1']);
+                $query->where('status', '0')->orWhere('status', '1');
             }])->where('user_id', '!=', Auth::user()->id)->get();
 
             return response()->json([
