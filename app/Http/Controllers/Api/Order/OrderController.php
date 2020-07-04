@@ -192,6 +192,22 @@ class OrderController extends Controller
                 'offer_price' => $request->offer_price,
             ]);
 
+            $optionBuilder = new OptionsBuilder();
+            $optionBuilder->setTimeToLive(60*20);
+
+            $notificationBuilder = new PayloadNotificationBuilder('my title');
+            $notificationBuilder->setBody('Hello world')->setSound('default');
+
+            $dataBuilder = new PayloadDataBuilder();
+            $dataBuilder->addData(['a_data' => 'my_data']);
+
+            $option = $optionBuilder->build();
+            $notification = $notificationBuilder->build();
+
+            $data = $dataBuilder->build();
+            $token = $order->seller->fcm_token;
+            $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
+
             return response()->json([
                 'message' => 'success',
                 'status' => true,

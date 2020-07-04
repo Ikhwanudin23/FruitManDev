@@ -30,6 +30,7 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->api_token = Str::random(80);
+        $user->fcm_token = $request->fcm_token;
         $user->save();
         $user->sendApiEmailVerificationNotification();
         $message = "Cek Email Anda, Verifikasi Dahulu";
