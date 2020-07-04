@@ -39,6 +39,7 @@ Route::get('order/collector/completed','Api\Order\OrderController@collectorCompl
 Route::get('order/seller/orderin','Api\Order\OrderController@sellerOrderIn');
 Route::get('order/seller/inprogress','Api\Order\OrderController@sellerInProgress');
 Route::get('order/seller/completed', 'Api\Order\OrderController@sellerCompleted');
+Route::get('order/seller/complete', 'Api\Order\OrderController@sellerComplete');
 
 Route::post('user/register', 'Api\User\Auth\RegisterController@register');
 Route::post('user/login', 'Api\User\Auth\LoginController@login');
