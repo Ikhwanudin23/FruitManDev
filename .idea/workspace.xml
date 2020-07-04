@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0d854c40-086e-4b55-b2f8-596f9d46c38b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Order/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Order/OrderController.php" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php" afterPath="$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,11 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderResource.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderResource.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Resources/OrderResource.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
               <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2020_04_26_082922_create_orders_table.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -111,7 +121,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/User/Profile/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/ProfileResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/UserResource.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php" />
         <option value="$PROJECT_DIR$/resources/views/templates/Partials/_sidebar.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/User/Auth/VerificationController.php" />
@@ -126,6 +135,7 @@
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/OrderResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/Order/OrderController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php" />
       </list>
     </option>
   </component>
@@ -306,6 +316,12 @@
               <item name="FruitManDev" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="FruitManDev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FruitManDev" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -382,12 +398,12 @@
       <workItem from="1593656458068" duration="3780000" />
       <workItem from="1593679859495" duration="1517000" />
       <workItem from="1593685055774" duration="1870000" />
-      <workItem from="1593776411123" duration="5266000" />
+      <workItem from="1593776411123" duration="5411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116750000" />
+    <option name="totallyTimeSpent" value="116895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -646,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="54" lean-forward="false" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/pages/dashboard.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -783,6 +792,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_04_26_082922_create_orders_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
           <folding />
         </state>
       </provider>
