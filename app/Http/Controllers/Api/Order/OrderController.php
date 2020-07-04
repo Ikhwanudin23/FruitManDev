@@ -51,7 +51,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function collectorCompleted()
+    public function collectorComplete()
     {
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
@@ -100,22 +100,6 @@ class OrderController extends Controller
             'message' => 'success',
             'status' => true,
             'data' => OrderResource::collection($orders),
-        ]);
-    }
-
-    public function sellerCompleted()
-    {
-        $orders = Order::all();
-//        $orders = Order::where('seller_id', Auth::user()->id)
-//            ->where('status', '2')
-//            ->where('arrive', true)
-//            ->where('completed', true)->get();
-
-        return response()->json([
-            'message' => 'success',
-            'status' => true,
-            'data' => $orders
-            //'data' => OrderResource::collection($orders),
         ]);
     }
 

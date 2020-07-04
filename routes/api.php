@@ -34,7 +34,7 @@ Route::get('order/{id}/arrived', 'Api\Order\OrderController@arrived');
 
 Route::get('order/collector/waiting','Api\Order\OrderController@collectorWaiting');
 Route::get('order/collector/inprogress','Api\Order\OrderController@collectorInProgress');
-Route::get('order/collector/completed','Api\Order\OrderController@collectorCompleted');
+Route::get('order/collector/complete','Api\Order\OrderController@collectorComplete');
 
 Route::get('order/seller/orderin','Api\Order\OrderController@sellerOrderIn');
 Route::get('order/seller/inprogress','Api\Order\OrderController@sellerInProgress');
