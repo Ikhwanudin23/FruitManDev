@@ -43,7 +43,6 @@ class OrderController extends Controller
     {
         $orders = Order::where('collector_id', Auth::user()->id)
         ->where('status', '2')
-        ->where('arrive', false)
         ->where('completed', false)->get();
         return response()->json([
             'message' => 'success',
