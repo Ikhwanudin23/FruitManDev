@@ -92,9 +92,11 @@ class OrderController extends Controller
     public function sellerCompleted()
     {
         $orders = Order::where('seller_id', Auth::user()->id)
-        ->where('status', '2')
-        ->where('arrive', true)
-        ->where('completed', true)->get();
+            ->where('status', '2')
+            ->where('arrive', true)
+            ->where('completed', true)
+            ->get();
+
         return response()->json([
             'message' => 'success',
             'status' => true,
