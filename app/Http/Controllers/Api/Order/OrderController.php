@@ -135,7 +135,7 @@ class OrderController extends Controller
     public function completed($id)
     {
         $order = Order::findOrFail($id);
-        $order->complete = true;
+        $order->completed = true;
         $order->update();
 
         return response()->json([
