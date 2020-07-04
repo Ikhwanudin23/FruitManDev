@@ -42,10 +42,17 @@ class ProductController extends Controller
         try {
             $fruits = Product::where('user_id', Auth::user()->id)->get();
 
+            $reuslts = [];
+            foreach ($fruits as $fruit){
+                if (!$fruit->order->complete == true){
+                    array_push($reuslts, $fruits);
+                }
+            }
+
             return response()->json([
                 'message' => 'success',
                 'status' => true,
-                'data' => ProductResource::collection($fruits),
+                'data' => ProductResource::collection(collect($reuslts)),
             ]);
         } catch (\Exception $exception) {
             return response()->json([
@@ -57,22 +64,17 @@ class ProductController extends Controller
     }
 
 
-    public function search(Request $request)
+    public function search($name)
     {
-        $products = Product::where('status', true)->get();
-        $strReq = strtolower($request->name);
-        $results = [];
-        foreach ($products as $product){
-            $strDb = strtolower($product->name);
-            if ($strReq == $strDb){
-                array_push($results, $product);
-            }
-        }
+        $ucwords = ucwords($name);
+        $products = Product::query()
+            ->where('name', 'LIKE', "%{$ucwords}%")
+            ->where('status', true)->get();
 
         return response()->json([
             'message' => 'Successfully search product by name',
             'status' => true,
-            'data' => $results
+            'data' => ProductResource::collection($products)
         ]);
     }
 
@@ -98,7 +100,7 @@ class ProductController extends Controller
 
             $product = Product::create([
                 'user_id' => Auth::user()->id,
-                'name' => $request->name,
+                'name' => ucwords($request->name),
                 'address' => $request->address,
                 'description' => $request->description,
                 'price' => $request->price,
