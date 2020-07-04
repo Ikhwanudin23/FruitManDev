@@ -92,10 +92,11 @@ class OrderController extends Controller
 
     public function sellerCompleted()
     {
-        $orders = Order::where('seller_id', Auth::user()->id)
-            ->where('status', '2')
-            ->where('arrive', true)
-            ->where('completed', true)->get();
+        $orders = Order::all();
+//        $orders = Order::where('seller_id', Auth::user()->id)
+//            ->where('status', '2')
+//            ->where('arrive', true)
+//            ->where('completed', true)->get();
 
         return response()->json([
             'message' => 'success',
