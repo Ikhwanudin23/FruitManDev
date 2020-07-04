@@ -21,14 +21,9 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $fruits = Product::where('user_id', '!=', Auth::user()->id)->get();
-
-            $results = [];
-            foreach ($fruits as $fruit){
-                if (!$fruit->order->status == '2'){
-                    array_push($results, $fruits);
-                }
-            }
+            $fruits = Product::with(['orders' => function($query){
+                $query->whereIn('status', ['0', '1']);
+            }])->where('user_id', '!=', Auth::user()->id)->get();
 
             return response()->json([
                 'message' => 'success',
