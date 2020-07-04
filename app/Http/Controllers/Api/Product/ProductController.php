@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Product;
 
 use App\Http\Resources\ProductResource;
 use App\Product;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,14 +22,46 @@ class ProductController extends Controller
     public function index()
     {
         try {
-            $fruits = Product::with(['orders' => function($query){
-                $query->where('status', '0')->orWhere('status', '1');
-            }])->where('user_id', '!=', Auth::user()->id)->get();
+            // $fruits = Product::where('user_id', '!=', Auth::user()->id)->get();
+
+            
+            // foreach ($fruits as $fruit) {
+            //     $orders = Order::where('product_id', $fruit->id)->get();
+            //     array_push($results, $orders);
+            // }
+
+            
+            $products = Product::where('user_id', '!=', Auth::user()->id)->where('status', true)->get();
+
+            $results = [];
+            foreach ($products as $product) {
+                if (!$product->order || $product->order['status'] != '2') {
+                    array_push($results, $product);
+                }
+                
+
+            }
+
+        
+
+            //$orders = Order::where('status', '!=', '2')->get();
+
+            // $results = [];
+            // foreach ($fruits as $fruit) {
+            //     $orders = Order::where('product_id', $fruit->id)->get();
+            //     foreach ($orders as $order) {
+            //         if ($order->status == '0' || $order->status == '1') {
+            //             array_push($results, $fruit);
+            //         }
+                    
+            //     }
+            // }
 
             return response()->json([
                 'message' => 'success',
                 'status' => true,
-                'data' => ProductResource::collection(collect($fruits)),
+                //'data' => $results
+                'data' => ProductResource::collection(collect($results)),
             ]);
         } catch (\Exception $exception) {
             return response()->json([
