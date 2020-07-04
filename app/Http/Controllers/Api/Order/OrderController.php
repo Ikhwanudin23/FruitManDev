@@ -99,8 +99,7 @@ class OrderController extends Controller
         return response()->json([
             'message' => 'success',
             'status' => true,
-            'data' => $orders
-            //'data' => OrderResource::collection($orders),
+            'data' => OrderResource::collection($orders),
         ]);
     }
 
