@@ -23,10 +23,17 @@ class ProductController extends Controller
         try {
             $fruits = Product::where('user_id', '!=', Auth::user()->id)->get();
 
+            $results = [];
+            foreach ($fruits as $fruit){
+                if (!$fruit->order->status == '2'){
+                    array_push($results, $fruits);
+                }
+            }
+
             return response()->json([
                 'message' => 'success',
                 'status' => true,
-                'data' => ProductResource::collection($fruits),
+                'data' => ProductResource::collection(collect($fruits)),
             ]);
         } catch (\Exception $exception) {
             return response()->json([
@@ -42,17 +49,12 @@ class ProductController extends Controller
         try {
             $fruits = Product::where('user_id', Auth::user()->id)->get();
 
-            $reuslts = [];
-            foreach ($fruits as $fruit){
-                if (!$fruit->order->complete == true){
-                    array_push($reuslts, $fruits);
-                }
-            }
+            
 
             return response()->json([
                 'message' => 'success',
                 'status' => true,
-                'data' => ProductResource::collection(collect($reuslts)),
+                'data' => ProductResource::collection(collect($fruits)),
             ]);
         } catch (\Exception $exception) {
             return response()->json([
