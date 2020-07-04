@@ -82,6 +82,7 @@ class OrderController extends Controller
         $orders = Order::where('seller_id', Auth::user()->id)
         ->where('status', '2')
         ->where('completed', false)->get();
+
         return response()->json([
             'message' => 'success',
             'status' => true,
@@ -94,7 +95,7 @@ class OrderController extends Controller
         $orders = Order::where('seller_id', Auth::user()->id)
             ->where('status', '2')
             ->where('arrive', true)
-            ->where('completed', true)
+            //->where('completed', true)
             ->get();
 
         return response()->json([
